@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>愛犬のための無料ツール｜トイプードルのムック</title>
+<meta name="description" content="トイプードルのムックの飼い主が、出典を確かめた数字で作った無料ツールです。人間年齢チェッカー、診療費シミュレーター、シニア期サイン チェック、○×クイズ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f1e6; --card: #fffbf5; --brown: #78543c; --accent: #cd8c64;
+    --accent-d: #b06842; --pale: #f0e0ce; --gray: #aa9687; --soft: #fcecde;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Noto Sans JP", sans-serif; color: var(--brown); line-height: 1.7; }
+  main { max-width: 560px; margin: 24px auto; padding: 28px 22px; background: var(--card); border: 4px solid var(--pale); border-radius: 24px; }
+  .tool { display: flex; gap: 14px; align-items: center; padding: 16px; margin-bottom: 12px; background: #fff; border: 2px solid var(--pale);
+    border-radius: 18px; text-decoration: none; color: var(--brown); }
+  .tool:hover { border-color: var(--accent); background: var(--soft); }
+  .tool .icon { flex: none; width: 52px; height: 52px; border-radius: 50%; background: var(--soft); display: flex; align-items: center; justify-content: center; font-size: 26px; }
+  .tool .name { display: block; font-weight: 700; font-size: 17px; margin: 0; }
+  .tool .desc { display: block; font-size: 14px; margin: 2px 0 0; }
+  .tool .go { flex: none; margin-left: auto; color: var(--accent); font-weight: 700; font-size: 22px; }
+  .about { font-size: 14px; margin-top: 20px; padding-top: 14px; border-top: 2px solid var(--pale); }
+  .about a { color: var(--accent-d); }
+  /* 見出し（noteの見出し画像と同じ形：左に丸いプードル、右にシリーズ名・タイトル） */
+  body { background-color: var(--bg); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cg fill='%23e8d6c2'%3E%3Cg transform='translate(60 70) rotate(-20) scale(1.6)'%3E%3Cellipse cx='0' cy='8' rx='13' ry='11'/%3E%3Cellipse cx='-14' cy='-6' rx='5' ry='6'/%3E%3Cellipse cx='-5' cy='-15' rx='5' ry='6'/%3E%3Cellipse cx='5' cy='-15' rx='5' ry='6'/%3E%3Cellipse cx='14' cy='-6' rx='5' ry='6'/%3E%3C/g%3E%3Cg transform='translate(300 40) rotate(10) scale(1.0)'%3E%3Cellipse cx='0' cy='8' rx='13' ry='11'/%3E%3Cellipse cx='-14' cy='-6' rx='5' ry='6'/%3E%3Cellipse cx='-5' cy='-15' rx='5' ry='6'/%3E%3Cellipse cx='5' cy='-15' rx='5' ry='6'/%3E%3Cellipse cx='14' cy='-6' rx='5' ry='6'/%3E%3C/g%3E%3Cg transform='translate(380 230) rotate(25) scale(1.4)'%3E%3Cellipse cx='0' cy='8' rx='13' ry='11'/%3E%3Cellipse cx='-14' cy='-6' rx='5' ry='6'/%3E%3Cellipse cx='-5' cy='-15' rx='5' ry='6'/%3E%3Cellipse cx='5' cy='-15' rx='5' ry='6'/%3E%3Cellipse cx='14' cy='-6' rx='5' ry='6'/%3E%3C/g%3E%3Cg transform='translate(150 300) rotate(-10) scale(1.1)'%3E%3Cellipse cx='0' cy='8' rx='13' ry='11'/%3E%3Cellipse cx='-14' cy='-6' rx='5' ry='6'/%3E%3Cellipse cx='-5' cy='-15' rx='5' ry='6'/%3E%3Cellipse cx='5' cy='-15' rx='5' ry='6'/%3E%3Cellipse cx='14' cy='-6' rx='5' ry='6'/%3E%3C/g%3E%3Cg transform='translate(250 390) rotate(15) scale(0.9)'%3E%3Cellipse cx='0' cy='8' rx='13' ry='11'/%3E%3Cellipse cx='-14' cy='-6' rx='5' ry='6'/%3E%3Cellipse cx='-5' cy='-15' rx='5' ry='6'/%3E%3Cellipse cx='5' cy='-15' rx='5' ry='6'/%3E%3Cellipse cx='14' cy='-6' rx='5' ry='6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); background-size: 420px 420px; }
+  .hero { display: flex; align-items: center; gap: 18px; margin: -4px 0 22px; }
+  .hero-face { flex: none; width: 118px; height: 118px; border-radius: 50%; background: #efe2d3;
+    border: 4px solid #fff; box-shadow: 0 0 0 4px var(--accent); display: flex; align-items: center; justify-content: center; }
+  .hero-face img { width: 86%; height: auto; }
+  .hero-text { min-width: 0; }
+  .hero-series { margin: 0 0 8px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); color: var(--brown); font-size: 12px; font-weight: 700; }
+  .hero-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 52px; height: 52px; padding: 0 8px; border-radius: 26px;
+    background: var(--accent); color: #fff; font-weight: 700; font-size: 15px; }
+  .hero h1 { margin: 6px 0 2px; font-size: 24px; line-height: 1.35; color: var(--brown); font-weight: 700; }
+  .hero-sub { margin: 0; color: var(--accent); font-size: 15px; font-weight: 700; }
+  .intro { color: var(--brown); font-size: 15px; margin: 0 0 8px; }
+  @media (max-width: 420px) {
+    .hero { flex-direction: column; text-align: center; gap: 12px; }
+    .hero-series { display: inline-block; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <div class="hero-face"><img src="mukku.png" alt="トイプードルのムックのイラスト"></div>
+    <div class="hero-text">
+      <p class="hero-series">トイプードルのムックと、後悔なく過ごすために</p>
+      <span class="hero-badge">ツール</span>
+      <h1>愛犬のための無料ツール</h1>
+      <p class="hero-sub">調べた数字で作りました</p>
+    </div>
+  </header>
+  <p class="intro">うちの子のことを、ちょっと調べてみたいときに。どれも無料で、登録もいりません。</p>
+
+  <a class="tool" href="https://okimukku.github.io/dog-quiz/">
+    <span class="icon">❓</span>
+    <span><span class="name">わんこ○×クイズ</span><span class="desc">寿命・年齢・お金のこと、どのくらい知っていますか？出典つきの10問です。</span></span>
+    <span class="go">›</span>
+  </a>
+  <a class="tool" href="https://okimukku.github.io/dog-age/">
+    <span class="icon">🐩</span>
+    <span><span class="name">愛犬の人間年齢チェッカー</span><span class="desc">年齢と体の大きさを選ぶと、人間でいうと何歳くらいかがわかります。</span></span>
+    <span class="go">›</span>
+  </a>
+  <a class="tool" href="https://okimukku.github.io/dog-senior/">
+    <span class="icon">📋</span>
+    <span><span class="name">シニア期サイン チェック</span><span class="desc">当てはまる様子をタップすると、動物病院で相談するときのメモができます。</span></span>
+    <span class="go">›</span>
+  </a>
+  <a class="tool" href="https://okimukku.github.io/dog-money/">
+    <span class="icon">💰</span>
+    <span><span class="name">診療費シミュレーター</span><span class="desc">年齢を選ぶと、これからの1年と、15歳までにかかる診療費の目安がわかります。</span></span>
+    <span class="go">›</span>
+  </a>
+
+  <div class="about">
+    作成：Moy（トイプードルのムック・4歳と暮らしています）<br>
+    獣医師ではない、ひとりの飼い主です。ツールの数字は、公的な資料や調査・研究で確かめたものを使っています。<br>
+    <a href="https://www.threads.com/@toypoo_mukku" target="_blank" rel="noopener">Threads</a>
+    <a href="https://note.com/toypoo_mukku" target="_blank" rel="noopener">note</a>
+  </div>
+</main>
+</body>
+</html>
